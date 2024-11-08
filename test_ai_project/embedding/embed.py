@@ -67,9 +67,9 @@ text_splitter = RecursiveCharacterTextSplitter(
 )
 
 shortened = []
-
+number = 0;
 for row in df.iterrows():
-
+  number += 1
   # If the text is None, go to the next row
   if row[1]['text'] is None:
     continue
@@ -89,7 +89,9 @@ for row in df.iterrows():
 df = pd.DataFrame(shortened, columns=['text'])
 df['n_tokens'] = df.text.apply(lambda x: len(tokenizer.encode(x)))
 
+print("Generating embeddings")
 df['embeddings'] = df.text.apply(lambda x: openai.embeddings.create(
     input=x, model='text-embedding-ada-002').data[0].embedding)
 
 df.to_csv('processed/embeddings.csv')
+print("DONE!!!!")
