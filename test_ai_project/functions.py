@@ -10,6 +10,7 @@ def python_math_execution(math_string):
   try:
     answer = eval(math_string)
     if answer:
+      print("test has worked, you are calling the function")
       return str(answer)
   except:
     return 'invalid code generated'

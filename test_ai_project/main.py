@@ -109,6 +109,16 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         "content": "Image was sent to the user, do not send the base64 string to them.",
                     }
                 )
+            else:
+                messages.append(
+                    {
+                        "tool_call_id": tool_call.id,
+                        "role": "tool",
+                        "name": name,
+                        "content": str(response),
+                    }
+                )
+            
             # Generate the final response
             final_response = openai.chat.completions.create(
                 model="gpt-4o-mini",

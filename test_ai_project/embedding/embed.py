@@ -10,7 +10,7 @@ load_dotenv() # take environment variables from .env.
 
 openai = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-DOMAIN = "adventuretime.fandom.com"
+DOMAIN = "www.columbiastate.edu"
 
 def remove_newlines(series):
   series = series.str.replace('\n', ' ')
